@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas</title>
+    <style>
+        /* Reset dasar */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Pengaturan layout dasar */
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: ghostwhite; /* Warna latar belakang yang sama */
+            padding: 20px;
+            color: #333;
+        }
+
+        /* Gaya Header */
+        header {
+            width: 100%;
+            background-color: #333;
+            color: white;
+            text-align: left;
+            padding: 20px;
+            margin: 20px auto;
+            font-size: 2em;
+            position: relative;
+        }
+
+        /* Judul Halaman */
+        h2 {
+            margin-top: 40px;
+            font-size: 2em;
+            color: #333;
+            text-align: center;
+        }
+
+        /* Styling Form */
+        form {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 10px; /* Ruang antara input dan tombol */
+            padding: 20px; /* Tambahkan padding */
+            background-color: #fff; /* Latar belakang putih untuk form */
+            border-radius: 10px; /* Radius untuk sudut */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Bayangan untuk form */
+            margin-bottom: 20px; /* Jarak bawah */
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 300px; /* Lebar input */
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #FF6347; /* Warna tombol */
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #e55347; /* Warna tombol saat hover */
+        }
+
+        /* Styling Daftar Tugas */
+        ul {
+            list-style: none;
+            margin-top: 20px;
+            width: 100%;
+            max-width: 600px; /* Lebar maksimum daftar */
+            padding: 0; /* Menghapus padding default */
+        }
+
+        li {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center; /* Menjajarkan item */
+        }
+
+        /* Tombol Kembali */
+        .back-button {
+            width: 400px;
+            text-align: center;
+            color: white;
+            text-decoration: none;
+            margin-top: 20px;
+            display: inline-block; /* Agar bisa diberi margin */
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: #333; /* Warna latar belakang tombol */
+            transition: background-color 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: #e55347; /* Warna saat hover */
+        }
+    </style>
+</head>
+<body>
+    <header>SmastTask</header>
+    <section id="tugas">
+        <h2>Tugas</h2>
+        <form action="/tugas" method="POST">
+            <input type="text" name="task" placeholder="Tugas baru" required>
+            <button type="submit">Tambah</button>
+        </form>
+        <ul>
+            <% todos.forEach(todo => { %>
+                <li>
+                    <%= todo.task %> 
+                    <form action="/tugas/delete" method="POST" style="display:inline;">
+                        <input type="hidden" name="tugasId" value="<%= todo.id %>">
+                        <button type="submit">Hapus</button>
+                    </form>
+                </li>
+            <% }); %>
+        </ul>
+    </section>
+    <p><a class="back-button" href="/dashboard">Kembali</a></p>
+</body>
+</html>
